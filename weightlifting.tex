@@ -1,0 +1,341 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[margin=1.3in, top=1.4in]{geometry}
+\usepackage[section]{placeins}
+\usepackage{booktabs}
+\usepackage{tabularx} 
+\usepackage{tabulary}
+\usepackage{cutwin}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{glossaries}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{float}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage[table,xcdraw]{xcolor}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+% Define Language
+\lstdefinelanguage{EL}
+{
+	% list of keywords
+	morekeywords={language, 
+		annotation,
+		interface,
+		service, 
+		services, 
+		reference, 
+		references, 
+		properties, 
+		int, 
+		float, 
+		string, 
+		bool, 
+		subcomponents, 
+		component, 
+		bind, 
+		to, 
+		promote, 
+		as,
+		import,
+		compile }, 
+	sensitive=false, % keywords are not case-sensitive
+	morecomment=[l]{//}, % l is for line comment
+	morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+	morestring=[b]" % defines that strings are enclosed in double quotes
+}
+% Set Language
+\lstset{
+	%language={EL},
+	aboveskip=2\bigskipamount,
+	backgroundcolor=\color{white}, % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+	basicstyle=\scriptsize, % the size of the fonts that are used for the code
+	breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+	breaklines=true, % sets automatic line breaking
+	captionpos=b, % sets the caption-position to bottom
+	commentstyle=\color{mygreen}, % comment style
+	deletekeywords={...}, % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)}, % if you want to add LaTeX within your code
+	extendedchars=true, % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=lines, % adds a frame around the code
+	keepspaces=true, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue}, % keyword style
+	% otherkeywords={*,language, interface,
+	% service, services, reference, references, properties, int, float, string, bool, subcomponents, component, bind, to, promote, as,import,compile, ...}, % if you want to add more keywords to the set
+	numbers=none, % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt, % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black}, % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false, % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false, % underline spaces within strings only
+	showtabs=false, % show tabs within strings adding particular underscores
+	stepnumber=2, % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve}, % string literal style
+	tabsize=2, % sets default tabsize to 2 spaces
+	title=\lstname, % show the filename of files included with \lstinputlisting; also try caption instead of title
+	%xleftmargin=20.0pt,
+	%xrightmargin=20.0pt
+}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\scriptsize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={@*}{@},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame={bottom and top},	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=c++,                      % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  aboveskip=1.5em,
+  belowskip=1em
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%subsubsubsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+%\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\newenvironment{abbreviations}{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}}}{\end{list}}
+\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \dotfill}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{EBNF}
+{\captionsetup{type=lstlisting}}
+{}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE FINAL REPORT}\\[1.0cm] % Major heading such as course name
+%\textsc{\Large Project II}\\[0.5cm] % Minor heading such as course title
+\textsc{\large Embedded Systems Research Group}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[1.2cm]
+{ \Huge \bfseries 
+DSL}\\[1.0cm] % Title of your document 
+\HRule \\[3.0cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+% Your name
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Class 2015/2016   \\
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+ \emph{Advisor:} \\
+Adriano \textsc{Tavares} \\ % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+\noindent\begin{minipage}{0.2\textwidth}
+\includegraphics[width=\linewidth]{Images/UMLogo}\\ [0.5cm] 
+\end{minipage}%
+\hfill%
+
+
+
+{ \large \bfseries 
+Universidade do Minho}\\[0.5cm] 
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+
+
+%----------------------------------------------------------------------------------------
+% Table of Contents
+%----------------------------------------------------------------------------------------
+\pagenumbering{roman}
+\renewcommand{\listfigurename}{Contents}
+\tableofcontents
+\newpage
+%----------------------------------------------------------------------------------------
+% Table of Figures
+%----------------------------------------------------------------------------------------
+%\renewcommand{\listfigurename}{Figures}
+%\listoffigures
+%\newpage
+%----------------------------------------------------------------------------------------
+% Table of Tables
+%----------------------------------------------------------------------------------------
+%\renewcommand{\listtablename}{Tables}
+%\listoftables
+
+%----------------------------------------------------------------------------------------
+% Table of Listings
+%----------------------------------------------------------------------------------------
+%\lstlistoflistings
+%\newpage
+
+%----------------------------------------------------------------------------------------
+% Glossaries
+%----------------------------------------------------------------------------------------
+%\newglossaryentry{utc}{name=UTC, description={Coordinated Universal Time}} %\gls{utc}
+%\printglossaries
+
+%----------------------------------------------------------------------------------------
+% Introduction
+%----------------------------------------------------------------------------------------
+\newpage
+\pagenumbering{arabic}
+\section{Introduction}
+
+\input{texts/Introduction}
+
+%----------------------------------------------------------------------------------------
+% Theoretical Concepts
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Design Methodology}
+\input{texts/DesignMethodology}
+	
+\newpage
+%----------------------------------------------------------------------------------------% 
+% Ontology Design and Development
+%----------------------------------------------------------------------------------------
+\section{Design and Development}
+
+\subsection{Step 1}
+\input{texts/Step1}
+
+\subsection{Step 2}
+\input{texts/Step2}
+
+\subsection{Step 3}
+\input{texts/Step3}
+
+\subsection{Step 4}
+\input{texts/Step4}
+
+\subsection{Step 5}
+\input{texts/Step5}
+
+\newpage
+%----------------------------------------------------------------------------------------
+% Ontology Validation
+%---------------------------------------------------------------------------------------
+\section{Validation}
+\input{texts/OntologyValidation}
+
+\subsection{Reasoners}
+\input{texts/OntologyReasoners}
+
+\subsection{Ontology Requirements}
+\input{texts/OntologyRequirements}
+
+\subsection{Consistency Checking}
+\input{texts/ConsistencyChecking}
+
+\newpage
+%----------------------------------------------------------------------------------------
+% Ontology Implementation
+%---------------------------------------------------------------------------------------
+\section{Implementation}
+\input{texts/OntologyImplementation}
+
+\subsection{Ontology APIs}
+\input{texts/OntologyAPIs}
+
+\subsection{Integration}
+\input{texts/Integration}
+
+\newpage
+
+%----------------------------------------------------------------------------------------%
+% Conclusion
+%----------------------------------------------------------------------------------------%
+\section{Conclusion}
+\input{texts/Conclusion.tex}
+\newpage
+
+%\bibliographystyle{abbrv}
+%\bibliography{texts/}
+
+
+\end{document}

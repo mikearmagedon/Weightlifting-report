@@ -1,0 +1,35 @@
+%David C. e Bóias
+
+%conclusion opening
+The main goal of this project was to develop a framework that allows the conception of an architecture and offers tool for automatization of code generation. This framework describes models, using a DSL based on the composite and SCA patterns, and provides mechanisms to easily interconnect components, change their behavior/implementation and configure their properties. In this way an end user can generate the final system, adapted to his own needs.
+
+%framework user perspective
+To use the developed framework, some steps must be followed, starting by the models conception, which may require code refactoring, following with the respective translation of the model to EL's code. 
+This code should be compiled in order to generate artifacts for elaboration implementations and model's configuration. 
+The source code should be annotated, and elaborators should be programmed in order to substitute the introduced annotations.
+Different elaborators represent different implementations for a given component, hence, selecting a particular elaborator will result in a distinct behavior. 
+Each component also contains a set of properties that can be specified before proceeding to code generation. 
+By configuring the two previously mentioned aspects of the various components in the system, a high degree of configurability can be achieved, resulting in generative code generation.
+
+%Language implementation steps
+To make all of this possible, a study about languages was performed, focusing on DSLs. 
+The domain for the DSL was system modeling and to make the language appropriate and feasible, requirement elicitation was performed. This way, a set of rules to restrict the languages writing was conceived, resulting in its grammar, and syntax.
+A set of validators whose purpose was to restrict and enforce the use of EL's semantic model were implemented. 
+Software for code generation was also developed. 
+With this, model's could be translated to java and the architecture's elaborations would respect the model. 
+These artifacts would be integrated in a program called Elaborator, that is responsible for fetching all components configurations and elaborations, in order to manipulate the annotated sources. 
+Properties configuration should be performed in xml files, and for that was developed an API that wraps a xml schema API. 
+It was also developed an API to help the programmer to implement its elaborations.
+To help with the compilation of all the java files, command line scripts were generated according to the machine's running operating system.
+In order to load component's elaborations, the java reflection API was used in the elaborator implementation.
+
+
+%tools
+With the resulting implementation it was possible to confirm that the use of high level tools accelerate the development of a language, in this case xtext proved to be a powerful tool to implement the grammar, Xtend facilitated the implementation of validators and the code generation process. Eclipse's Modeling Framework was useful to verify the correct semantic model, alleviating the task of validator implementation through the use of the this frameworks API. On the generated products, namely the Elaborator program, Java's Reflection API, proved to be a great tool to provide flexibility to the Elaborator program. 
+
+%achivied work
+The work of implementing a functional and proper DSL is hard, and should be accomplished with a high level of  the domain's comprehension. Nevertheless, Elaboration Language development was accomplished successfuly, once all the implement elements of the system are fully operable. 
+
+%future work
+Future work should focus on improving the mechanisms for component integration using semantic technology, based on programming language domain ontologies. 
+Also, different language implementations on different components of the same reference architecture should be made possible since this is not an unusual occurrence in embedded system design and also since the ultimate goal of the framework is to model a complete system stack as one single component.
