@@ -1,0 +1,91 @@
+
+This section provides an overview and comparison of two reasoners, Pellet and Hermit, taking into account the final application and ontology. The Fact++ reasoner is also included in the comparison to provide an extra perspective.
+Although ontology's characteristics are not yet known, the analysis performed on the specified reasoners is based on the work performed by [1] and [5], which consists on the creation of a complete benchmarks based on several important characteristics, such as practicability and performance.
+
+A reasoner is a program that infers logical consequences from a list of explicit asserted facts or axioms and typically provides automated support for reasoning tasks such as classification, debugging and querying.
+
+The selected reasoners are: HermiT [2], Pellet [3] and Fact++ [4]. This set has several common characteristics which seem to be essential to the final application. In terms of practical usability, they are accessible through the OWL API and can be plugged into Protégé. Since they possess the same interfaces, they can be interchanged providing development flexibility, allowing to easily compare them. Also all the referred reasoners implement tableux algorithms which guarantees soundness - all the inferred statements a correct - and completeness - how many correct statements are inferred.
+
+\begin{itemize}
+\item \textbf{Hermit} - This Java-based OWL reasoner is based on a new tableau reasoning algorithm. It can be integrated into Protege e and Java applications using the OWL API.
+\item \textbf{Pellet} - This is an open-source, Java-based OWL DL reasoning engine that supports a majority of the constructs of OWL, including those introduced in OWL 2. Pellet is developed and commercially supported by Clark and Parsia.
+\item \textbf{FaCT++} - An open-source reasoner, which implemented in C++, supports large subset of OWL DL and is based on optimized tableaux algorithms.
+\end{itemize}
+
+\subsubsection{Performance Comparison}
+
+The developed performance benchmark in [1] uses two typical reasoner tasks, consistency checking and classification. Consistency checking verifies whether there exists a relational structure that satisfies all axioms in the given ontology, that is, if there are no contradictory statements in the ontology. Classification is the computation of the concept hierarchy and is often used as the main performance indicator. The ontology should be checked for consistency and classified regularly, with every modification made to the ontology. 
+
+Using several well established ontologies in the biomedical field, [1] evaluates the performance of the three reasoners according to the previously mentioned reasoner tasks, among other characteristics. This ontologies have the same OWL profile but different sizes in order to evaluate a possible trade off between ontologies' complexity and reasoner's performance. The ontologies used were GO, NCI and SNOMED CT which are listed in ascendant order of size. According to the data provided in [1], all tested reasoners succeeded in classifying SNOMED CT and the Fact++ was the only reasoner who classified the NCI faster than the GO ontology. HermiT reasoner had the worst performance when classifying the SNOMED CT ontology taking up to two hours to perform the task.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+      &  HermiT    &  Pellet     &  Fact++    \\ \hline
+GO    &    6.48    &  3.41       &  20.75     \\ \hline
+NCI   &   11.75    &  14.84      &  11.10     \\ \hline
+S CT  &  6,793.76  &  1,345.65   &  700.87    \\ \hline
+\end{tabular}
+\caption{Reasoner classification performance comparison in [1] (s).}
+\label{tab:1}
+\end{table}
+
+Consistency checking performance per reasoner is depicted in table \ref{tab:1}. The recorded times are mostly insignificant except for the SNOMED CT ontology where HermiT outperforms the other reasoners by a large margin.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+      &  HermiT  &  Pellet   &  Fact++ \\ \hline
+GO    &    0.00  &  0.27     &  0.36   \\ \hline
+NCI   &    0.00  &  0.38     &  0.71   \\ \hline
+S CT  &    0.00  &  16.78    &  15.3   \\ \hline
+\end{tabular}
+\caption{Reasoner consistency check performance comparison in [1] (s).}
+\label{tab:2}
+\end{table}
+
+It should be noted that, independently of the used reasoner, the performance decreases with increasing ontology size and complexity.
+
+In [5] a different kind of analysis is performed. Reasoners are compared according to their Load and Response Time.
+Load Time is the time required to perform some important preparation before querying, load ontologies and check for consistency. Response Time starts with querying execution and ends when all the results are stored in a local variable. 
+In the previous article, the tested ontologies were implemented according to the same OWL profile, this one tests ontologies implemented in different OWL profiles, in ascending expressiveness order in tables \ref{tab:3} and \ref{tab:4}.
+The referred tables contain a comparison between only Hermit and Pellet.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+          &   HermiT  &  Pellet \\ \hline
+VICODI    &    0.889  &  0.563   \\ \hline
+SWRC      &    0.776  &  0.518  \\ \hline
+LUBM      &    0.708  &  0.404   \\ \hline
+WINE      &    1.090  &  0.835   \\ \hline
+\end{tabular}
+\caption{Load time performance comparison in [5] (s).}
+\label{tab:3}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+          &  HermiT  &  Pellet  \\ \hline
+VICODI    &    0.180  &  1.145  \\ \hline
+SWRC      &    0.046  &  0.346  \\ \hline
+LUBM      &    0.046  &  0.253  \\ \hline
+WINE      &    0.465  &  9.252  \\ \hline
+\end{tabular}
+  \caption{Response time performance comparison in [5] (s).}
+\label{tab:4}
+\end{table}
+
+By looking at the above tables it is clear that, although Pellet shows better performance at load time it also shows significant less performance than HermiT when queries are executed. This comparison depends on whether the application frequently operate on preloaded ontologies or has to re-loaded them at each classification, since on the former case load times are irrelevant. 
+
+
+\subsubsection{Final Thoughts}
+
+Based on the literature, two benchmarks and the respective results were analyzed to select the reasoners that best fit application's requirements. At first sight the HermiT reasoner shows a better performance than Pellet.  Unfortunately, a decision could not be made on a specific reasoner since application requirements are not yet known. Another important point for reasoner's selection are ontology's characteristics, such as size or expressiveness, which are also unknown. 
+
+Since reasoner performance is largely dependent on ontology and application characteristics, when developing an ontology and its application, the various reasoners should be tested often in order to decide which one bests suits the system requirements. Because of this, an important characteristic of the selected reasoners, is that they should provide an interface via the OWL API and as a Protégé plugin, which will allow to easily interchange them at development time. 
