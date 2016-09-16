@@ -1,0 +1,22 @@
+An ontology API provides a set of tools to interact with ontologies from a specific programming language. There are some key features to have in mind when choosing these APIs (e.g., purpose, flexibility, application's programming language, ontology representation format). When the purpose of the interface includes reasoning, it becomes important to include Reasoner Compatibility in the desired features.
+
+\subsubsection{Ontology Data Model Manipulation API}
+
+In this section, the desired purpose is to provide methods to load an OWL file and edit its ontology model. The interface must be implemented in JAVA. The following APIs will be evaluated considering the previously mentioned restrictions:
+\begin{itemize}
+	\item OWL API
+	\item Jena API
+	\item Protégé-OWL API
+\end{itemize}
+
+The OWL API is an Open Source Java API for creating, manipulating and serializing OWL Ontologies. It is able to read numerous ontology formats apart from OWL and OWL2, such as RDF, Turtle, KRSS and OBO. It has one of the easiest JAVA programming interfaces. The user can load and save ontologies, create or delete entities, interact with reasoners, among other functionalities. Two reasoner implementations are available --- Pellet and FaCT\texttt{+}\texttt{+}. It supports SWRL rules but not SPARQL queries. Since SPARQL is an RDF query language, this means that the interface is not RDF-friendly.
+
+Jena API, on the other side, covers RDF manipulation at its fullest. This means that it is extremely flexible since it can be used to create OWL constructs, axioms and run inferences. Unlike the OWL API, it is capable of running SPARQL queries. The provided interface is also written in JAVA but it is slightly more complex. This API already includes various reasoners to cope with different tasks, such as transitive and reflexive properties solving; RDFS, OWL and generic rule solving.
+
+Finally, the Protégé-OWL API is an extension of the core Protégé API. It stands as an open-source JAVA tool. To load RDF ontologies it uses ARP, which is the parsing subsystem in Jena to handle the RDF/XML syntax. It is possible to convert a Protégé OWLModel into a Jena OntModel. This close relationship with Jena doesn't end here since it reuses species validation, datatype handling services and a graph interface from Jena. This API can be used  to manage all aspects of the Protégé internal representation. This kind of flexibility comes at the expense of low-level and less user-friendly methods.
+
+Protégé-OWL was the chosen API due to its scarce limitations and large available documentation.
+
+\subsubsection{Reasoning API}
+
+\subsubsection{SQWRL API}
