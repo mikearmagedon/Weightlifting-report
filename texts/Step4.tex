@@ -1,0 +1,16 @@
+This phase has the purpose of identification of the properties developed for the ontology that allow the \textbf{relationship} between one or more concepts.
+
+For the Weightlifting ontology, two kind of OWL properties were developed: \textbf{Object} and \textbf{Data} properties. 
+
+Object properties were developed to define explicit relationships between one or more concepts. Object properties such as 'practices', 'lifts', 'has', 'isPracticedby', 'isliftedBy' and 'isPartOf', were developed in order to make possible the establishment of relationships between one or more concepts. As already said, each property establishes relationships and their descriptions are presented below: 
+
+\begin{itemize}  
+	\item Object property 'practices' relates Athlete class to Exercise class and assures that the Athlete always practices an exercise.
+	\item Object property 'lifts' relates Athlete class and Barbell class, meaning that an athlete lifts a barbell.
+	\item Object property 'has' relates Exercise class and Barbell class, meaning that an weightlifting exercise has a barbell.
+	\item Object property 'isPracticedby' is the inverse property of 'practices'.
+	\item Object property 'isliftedBy' is the inverse property of 'lifts'.
+	\item Object property 'isPartOf' is the inverse property of 'has'.
+\end{itemize}
+
+Data properties were developed to define explicit relationships between concepts and data values. These properties were developed to accommodate some cases where three-dimensional variables are necessary to measure specific lifting positions, during the athlete exercise. Data properties such as the knee or ankle three-dimensional position along the athlete lifting series are example of properties developed in order to make possible the establishment of relationships between one or more concepts.
