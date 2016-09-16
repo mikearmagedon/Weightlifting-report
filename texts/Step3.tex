@@ -1,0 +1,23 @@
+The third step on ontology design consists in defining the ontology concepts and its UML representation. Concepts are OWL classes that describe a specific domain.
+
+The domain of the ontology is weightlifting and after a quick study the concepts were found: the \textbf{Athlete} class represents the athlete's profile and its properties such as name, age and weight, the \textbf{Barbell} class represents the piece of equipment that is lifted during the exercise and the \textbf{Exercise} class represents the exercise itself. This last concept is divided in other two that represent different competitions of the Olympic weightlifting: the \textbf{Snatch} and \textbf{Clean and Jerk}.
+
+The concepts have different relationships between them, which can be described as:
+\begin{itemize}
+	\item Athlete \textbf{practices} Exercise, 
+	\item Exercise \textbf{is practiced by} Athlete,
+	\item Athlete \textbf{lifts} Barbell,
+	\item Barbell \textbf{is lifted by} Athlete,
+	\item Exercise \textbf{has} Barbell,
+	\item Barbell \textbf{is part of} Exercise.
+\end{itemize}
+
+Figure \ref{UML} represents the high level UML representation of this Ontology with all the concepts and correspondent relationships. 
+
+\begin{figure}[H]
+	\includegraphics[width=0.9\linewidth]{Images/step3_UML.png}
+	\caption{UML representation.}
+	\label{UML}
+\end{figure}
+
+
