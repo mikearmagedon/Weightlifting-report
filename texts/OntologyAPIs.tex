@@ -9,7 +9,7 @@ In this section, the desired purpose is to provide methods to load an OWL file a
 	\item Protégé-OWL API
 \end{itemize}
 
-The OWL API is an Open Source Java API for creating, manipulating and serializing OWL Ontologies. It is able to read numerous ontology formats apart from OWL and OWL2, such as RDF, Turtle, KRSS and OBO. It has one of the easiest JAVA programming interfaces. The user can load and save ontologies, create or delete entities, interact with reasoners, among other functionalities. Two reasoner implementations are available --- Pellet and FaCT\texttt{+}\texttt{+}. It supports SWRL rules but not SPARQL queries. Since SPARQL is an RDF query language, this means that the interface is not RDF-friendly.
+The OWL API is an Open Source Java API for creating, manipulating and serializing OWL Ontologies. It is able to read numerous ontology formats apart from OWL and OWL2, such as RDF, Turtle, KRSS and OBO. It has one of the easiest JAVA programming interfaces. The user can load and save ontologies, create or delete entities, interact with reasoners, among other functionalities. Two reasoner implementations are available --- Pellet and FaCT\texttt{++}. It supports SWRL rules but not SPARQL queries. Since SPARQL is an RDF query language, this means that the interface is not RDF-friendly.
 
 Jena API, on the other side, covers RDF manipulation at its fullest. This means that it is extremely flexible since it can be used to create OWL constructs, axioms and run inferences. Unlike the OWL API, it is capable of running SPARQL queries. The provided interface is also written in JAVA but it is slightly more complex. This API already includes various reasoners to cope with different tasks, such as transitive and reflexive properties solving; RDFS, OWL and generic rule solving.
 
@@ -17,6 +17,17 @@ Finally, the Protégé-OWL API is an extension of the core Protégé API. It sta
 
 Protégé-OWL was the chosen API due to its scarce limitations and large available documentation.
 
-\subsubsection{Reasoning API}
 
 \subsubsection{SQWRL API}
+
+Protégé provides SWRLAPI, which is a very useful interface for working with the OWL-based SWRL rule and SQWRL query languages. It includes graphical tools for editing and executing rules and queries.  
+
+When a query is executed, the API uses a rule engine to run all SWRL rules. It works as an inference agent to gather all the knowledge from the rules, providing the query engine with supplementary information. The API can, however, run a standalone SQWRL query method without running SWRL rules.
+
+
+\subsubsection{Reasoning API}
+
+Another important interface is the Protege-OWL Reasoner API. It provides programmatic access to a direct or a DIG-compliant reasoner. It implements methods for consistency checking, classification of an ontology as well as methods for getting the inferred information for a particular OWL entity. 
+
+One of the most documented reasoners to work with this API is Pellet. This reasoner can access the ontology through a Jena model or a Protege-OWL model. As mentioned earlier, the close relationship between Protégé and Jena makes it possible to convert an OWLModel into an OntModel. Once converted, the user can then create a ProtegeReasoner class instance and start the inferring process.
+
