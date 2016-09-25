@@ -1,14 +1,14 @@
 
-This section provides an overview and comparison of two reasoners, Pellet and Hermit, to understand which one better suits the final weightlifting application and ontology, taking into account their performance and precision (completeness and soundness) . The Fact\texttt{++} and RacerPro reasoners are also included in the comparison to provide an additional reference point. Given that the weightlifting ontology has very little complexity and a small size, which would yield similar results for all reasoners, the analysis performed on the specified reasoners is based on the work performed by \cite{Dentler2011} and \cite{Bock2008}, which consist on the creation of complete benchmarks based on several important characteristics, such as practical usability and load time and response time performance.
+This section provides an overview and comparison of two reasoners, Pellet and HermiT, to understand which one better suits the final weightlifting application and ontology, taking into account their performance and precision (completeness and soundness). The FaCT\texttt{++} and RacerPro reasoners are also included in the comparison to provide an additional reference point. Given that the weightlifting ontology has very little complexity and a small size, which would yield similar results for all reasoners, the analysis performed on the specified reasoners is based on the work performed by \cite{Dentler2011} and \cite{Bock2008}, which consist on the creation of complete benchmarks based on several important characteristics, such as practical usability and load time and response time performance.
 
 A reasoner is a program that infers logical consequences from a list of explicit asserted facts or axioms and typically provides automated support for reasoning tasks such as classification, debugging and querying.
 
-The reasoners presented are: HermiT \cite{1_hermitreasoner}, Pellet \cite{2_stardog-union/pellet_2016}, Fact\texttt{++} \cite{3_fact++reasoner} and RacerPro \cite{4_racerpro_2016}. This set has several common characteristics which seem to be essential to the final application. In terms of practical usability, they are accessible through the OWL API and can be plugged into Protégé, except RacerPro. Since they possess the same interfaces, they can be interchanged providing development flexibility, allowing to easily compare them. Also all the referred reasoners implement tableux algorithms which guarantees soundness - all the inferred statements a correct - and completeness - how many correct statements are inferred. Another important reasoner characteristic is rule support. However, the Fact\texttt{++} does not provide SWRL rule support and Hermit is not capable of dealing with SWRL built-ins. A small description of each reasoner follows:
+The reasoners presented are: HermiT \cite{1_hermitreasoner}, Pellet \cite{2_stardog-union/pellet_2016}, FaCT\texttt{++} \cite{3_fact++reasoner} and RacerPro \cite{4_racerpro_2016}. This set has several common characteristics which seem to be essential to the final application. In terms of practical usability, they are accessible through the OWL API and can be plugged into Protégé, except RacerPro. Since they possess the same interfaces, they can be interchanged providing development flexibility, allowing to easily compare them. Also all the referred reasoners implement tableux algorithms which guarantees soundness - all the inferred statements are correct - and completeness - how many correct statements are inferred. Another important reasoner characteristic is rule support. However, the FaCT\texttt{++} does not provide SWRL rule support and HermiT is not capable of dealing with SWRL built-ins. A small description of each reasoner follows:
 
 \begin{itemize}
-\item \textbf{Hermit} - This Java-based OWL reasoner is based on a new tableau reasoning algorithm. It can be integrated into Protégé e and Java applications using the OWL API.
+\item \textbf{HermiT} - This Java-based OWL reasoner is based on a new tableaux reasoning algorithm. It can be integrated into Protégé and Java applications using the OWL API.
 \item \textbf{Pellet} - This is an open-source, Java-based OWL DL reasoning engine that supports a majority of the constructs of OWL, including those introduced in OWL 2. Pellet is developed and commercially supported by Clark and Parsia.
-\item \textbf{FaCT\texttt{++}} - An open-source reasoner, which implemented in C\texttt{++}, supports large subset of OWL DL and is based on optimized tableaux algorithms.
+\item \textbf{FaCT\texttt{++}} - An open-source reasoner, which is implemented in C\texttt{++}, supports large subset of OWL DL and is based on optimized tableaux algorithms.
 \item \textbf{RacerPro} (Renamed ABox and Concept Expression
 Reasoner, Racer Systems) supports a large subset of OWL DL. It is implemented in the Common Lisp programming language.
 \end{itemize}
@@ -17,7 +17,7 @@ Reasoner, Racer Systems) supports a large subset of OWL DL. It is implemented in
 
 The developed performance benchmark in \cite{Dentler2011} uses two typical reasoner tasks, consistency checking and classification. Consistency checking verifies whether there exists a relational structure that satisfies all axioms in the given ontology, that is, if there are no contradictory statements in the ontology. Classification is the computation of the concept hierarchy and relationship. This is often used as the main performance indicator. The ontology should be checked for consistency and classified regularly, with every modification made to it. 
 
-Using several well established ontologies in the biomedical field, \cite{Dentler2011} evaluates the performance of several reasoners (including HermiT, Pellet and Fact\texttt{++}) according to the previously mentioned reasoner tasks, among other characteristics. This ontologies have the same OWL profile but different sizes in order to evaluate a possible trade off between ontologies' complexity and reasoner's performance. The ontologies used were GO, NCI and SNOMED CT which are listed in ascendant order of size in tables \ref{tab:1} and \ref{tab:2}. According to the data provided in \cite{Dentler2011} present in table \ref{tab:1}, all tested reasoners succeeded in classifying SNOMED CT and the Fact\texttt{++} was the only reasoner who classified the NCI faster than the GO ontology. HermiT reasoner had the worst performance when classifying the SNOMED CT ontology taking up to two hours to perform the task.
+Using several well established ontologies in the biomedical field, \cite{Dentler2011} evaluates the performance of several reasoners (including HermiT, Pellet and FaCT\texttt{++}) according to the previously mentioned reasoner tasks, among other characteristics. These ontologies have the same OWL profile but different sizes in order to evaluate a possible trade off between ontologies' complexity and reasoner's performance. The ontologies used were GO, NCI and SNOMED CT which are listed in ascendant order of size in tables \ref{tab:1} and \ref{tab:2}. According to the data provided in \cite{Dentler2011} present in Table~\ref{tab:1}, all tested reasoners succeeded in classifying SNOMED CT and the FaCT\texttt{++} was the only reasoner who classified the NCI faster than the GO ontology. HermiT reasoner had the worst performance when classifying the SNOMED CT ontology taking up to two hours to perform the task.
 
 
 
@@ -26,7 +26,7 @@ Using several well established ontologies in the biomedical field, \cite{Dentler
 \caption{Reasoner classification performance comparison in seconds \cite{Dentler2011}.}
 \begin{tabular}{|l|l|l|l|}
 \hline
-      &  HermiT    &  Pellet     &  Fact\texttt{++}    \\ \hline
+      &  HermiT    &  Pellet     &  FaCT\texttt{++}    \\ \hline
 GO    &    6.48    &  3.41       &  20.75     \\ \hline
 NCI   &   11.75    &  14.84      &  11.10     \\ \hline
 S CT  &  6,793.76  &  1,345.65   &  700.87    \\ \hline
@@ -41,7 +41,7 @@ Consistency checking performance per reasoner is depicted in table \ref{tab:2}. 
 \caption{Reasoner consistency check performance comparison in seconds \cite{Dentler2011}.}
 \begin{tabular}{|l|l|l|l|}
 \hline
-      &  HermiT  &  Pellet   &  Fact\texttt{++}  \\ \hline
+      &  HermiT  &  Pellet   &  FaCT\texttt{++}  \\ \hline
 GO    &    0.00  &  0.27     &  0.36   \\ \hline
 NCI   &    0.00  &  0.38     &  0.71   \\ \hline
 S CT  &    0.00  &  16.78    &  15.3   \\ \hline
@@ -90,4 +90,4 @@ Based on the literature, two benchmarks and the respective results (\cite{Dentle
 
 Since reasoner performance is largely dependent on ontology and application characteristics, when developing an ontology and its application, the various reasoners should be tested regularly in order to decide which one bests suits the system requirements. Because of this, an important characteristic of the selected reasoners is that they should provide an interface via a common ontology API, such as the OWL API, and have a Protégé plugin, which will allow to easily interchange them at development time for performance testing. 
 
-Regarding the target weightlifting ontology it is noted that, for such a simple and small ontology, a rule engine should suffice. However, if a reasoner must be selected, that reasoner should be Pellet. Firstly, Pellet shows good performance at load and classification time for small and simple ontologies. Also Hermit does not support SWRL rule built-ins on which this ontology greatly depends.
+Regarding the target weightlifting ontology it is noted that, for such a simple and small ontology, a rule engine should suffice. However, if a reasoner must be selected, that reasoner should be Pellet. Firstly, Pellet shows good performance at load and classification time for small and simple ontologies. Also HermiT does not support SWRL rule built-ins on which this ontology greatly depends.

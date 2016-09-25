@@ -6,7 +6,7 @@ Displayed in Figure~\ref{fig:ont_int} is part of the application behavior.
 Starting with a click event, an XML parsing process is initiated to convert rules into an SQWRL query format.
 After that, is established a connection to an SQL database to retrieve the athlete's training data.
 Then is performed a conversion of the ontology OWLModel to an OntModel for it to be used with the SQWRL query engine.
-In the created OntModel is created an individual to hold the athlete's training session data that will be used for the inference process.
+In the generated OntModel is created an individual to hold the athlete's training session data that will be used for the inference process.
 Because this is done in a "temporary" model, none of these actions will have any effect on the developed ontology.
 Finally, the inference process takes place with the execution of each query through the Query Engine.
 In the end of this process the results are displayed, telling the athlete which parts of the exercise were well done and not well done.
